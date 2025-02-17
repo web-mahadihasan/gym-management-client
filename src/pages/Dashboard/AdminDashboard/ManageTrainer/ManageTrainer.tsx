@@ -1,8 +1,5 @@
-"use client"
 
-import type React from "react"
-import { useState, useEffect } from "react"
-import axios from "axios"
+import { LoadingSpinner } from "@/components/LoadingSpinner"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import useAxiosSecured from "@/hooks/useAxiosSecured"
@@ -59,7 +56,8 @@ const ManageTrainers: React.FC = () => {
     });
     
   }
-
+if(isLoading) return <LoadingSpinner/>
+  
   return (
     <div className="my-10">
       <h2 className="text-2xl font-semibold mb-4 text-center border-b-4 border-purple-500 w-fit mx-auto pb-3">Manage Your Trainers</h2>

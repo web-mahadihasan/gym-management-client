@@ -1,3 +1,4 @@
+import { LoadingSpinner } from "@/components/LoadingSpinner"
 import { useAuth } from "@/contexts/AuthContext"
 import useAxiosSecured from "@/hooks/useAxiosSecured"
 import { useQuery } from "@tanstack/react-query"
@@ -14,7 +15,8 @@ const TrainerDashboard: React.FC = () => {
           return data
       }
     })
-    console.log(assignClass)
+    if(isLoading) return <LoadingSpinner/>
+      
 
   return (
     <div className="my-10">

@@ -16,6 +16,7 @@ import { useQuery } from "@tanstack/react-query"
 import useAxiosSecured from "@/hooks/useAxiosSecured"
 import toast from "react-hot-toast"
 import Swal from "sweetalert2"
+import { LoadingSpinner } from "@/components/LoadingSpinner"
 
 interface Trainer {
   _id: string
@@ -97,7 +98,7 @@ export default function ClassSchedules() {
       console.error("Error creating schedule:", error)
     }
   }
-  if(isLoading) return <p>loading...</p>
+  if(isLoading) return <LoadingSpinner/>
   return (
     <div className="my-10">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>

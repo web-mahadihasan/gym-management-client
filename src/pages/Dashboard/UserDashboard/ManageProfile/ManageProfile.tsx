@@ -7,6 +7,7 @@ import { Eye, EyeOff } from "lucide-react"
 import axios from "axios"
 import useAxiosSecured from "@/hooks/useAxiosSecured"
 import Swal from "sweetalert2"
+import { LoadingSpinner } from "@/components/LoadingSpinner"
 
 const ManageProfile: React.FC = () => {
   const { user, fetchUser } = useAuth()
@@ -42,7 +43,7 @@ const ManageProfile: React.FC = () => {
       console.error("Error updating profile:", error)
     }
   }
-
+  
   return (
     <div className="my-10">
          <h2 className="text-2xl font-semibold mb-4 text-center border-b-4 border-purple-500 w-fit mx-auto pb-3">Manage Your profile</h2>

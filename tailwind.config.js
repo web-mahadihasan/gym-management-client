@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: ["class"],
-	content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
+    content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
   		borderRadius: {
@@ -50,9 +50,19 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+		  animation: {
+			"spinner-blade": "spinner-blade 1s linear infinite",
+		  },
+		  keyframes: {
+			"spinner-blade": {
+			  "0%": { opacity: "0.85" },
+			  "50%": { opacity: "0.25" },
+			  "100%": { opacity: "0.25" },
+			},
+		  },
   	}
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 }
 

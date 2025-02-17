@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import useAxiosSecured from "@/hooks/useAxiosSecured"
 import { useQuery } from "@tanstack/react-query"
 import Swal from "sweetalert2"
+import { LoadingSpinner } from "@/components/LoadingSpinner"
 
 interface User {
   _id: string
@@ -51,7 +52,7 @@ const CreateNewTrainer: React.FC = () => {
       console.error("Error creating trainer:", error)
     }
   }
-
+  
   const handleMakeTrainer = async (name: string, email: string) => {
     try {
       await axiosSecured.post(`/api/admin/create-trainer`, { name, email })
@@ -70,7 +71,8 @@ const CreateNewTrainer: React.FC = () => {
       console.error("Error making trainer:", error)
     }
   }
-
+  if(isLoading) return <LoadingSpinner/>
+  
   return (
     <div className="space-y-6 my-10">
         <h2 className="text-2xl font-semibold mb-4 text-center border-b-4 border-purple-500 w-fit mx-auto pb-3">Create New Trainee</h2>
