@@ -3,3 +3,6 @@
 .font-inter{
     font-family: "Inter", serif;
 }
+.dashboard a.active{
+    background-color: #F3F3F3;
+}

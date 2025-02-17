@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useAuth } from "@/contexts/AuthContext"
 import { useQuery } from "@tanstack/react-query"
 import useAxiosSecured from "@/hooks/useAxiosSecured"
@@ -6,7 +5,7 @@ import Swal from "sweetalert2";
 
 export default function BookClasses() {
   const { user } = useAuth()
-  console.log(user)
+
   const axiosSecured = useAxiosSecured()
 
   const {data: availableClass, refetch, isLoading} = useQuery({
@@ -41,14 +40,15 @@ export default function BookClasses() {
     <div className="my-10 font-inter">
       <h2 className="text-2xl font-semibold mb-4 text-center border-b-4 border-purple-500 w-fit mx-auto pb-3">Available Classes</h2>
       <div className="bg-white mt-10">
-        <ul className="space-y-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {availableClass?.map((schedule: any) => (
             <li key={schedule._id} className="border p-6 rounded-lg shadow-sm space-y-2">
+              <h3 className="font-bold text-xl"> <span className="font-bold">Class Title: </span>{schedule?.title}</h3>
               <p className="font-semibold">Date: {new Date(schedule.date).toLocaleDateString()}</p>
-              <p>
+              <p className="">
                 <span className="font-bold">Time:</span> {schedule.startTime} - {schedule.endTime}
               </p>
-              <p><span className="font-bold">Trainer:</span> {schedule.trainer}</p>
+              {/* <p><span className="font-bold">Trainer:</span> {schedule.trainer}</p> */}
               <p><span className="font-bold">Available Slots:</span> {schedule.maxCapacity - schedule.currentBookings}</p>
               <button
                 onClick={() => handleBooking(schedule._id)}

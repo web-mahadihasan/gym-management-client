@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import useAxiosSecured from "@/hooks/useAxiosSecured"
 import { useQuery } from "@tanstack/react-query"
+import Swal from "sweetalert2"
 
 interface Trainer {
   _id: string
@@ -15,7 +16,6 @@ interface Trainer {
 }
 
 const ManageTrainers: React.FC = () => {
-  // const [trainers, setTrainers] = useState<Trainer[]>([])
   const axiosSecured = useAxiosSecured()
 
   const {data: allTrainer, isLoading, refetch} = useQuery({
@@ -26,26 +26,38 @@ const ManageTrainers: React.FC = () => {
     }
   })
 
-  // useEffect(() => {
-  //   fetchTrainers()
-  // }, [])
-
-  // const fetchTrainers = async () => {
-  //   try {
-  //     const response = await axios.get("/api/admin/trainers")
-  //     setTrainers(response.data.data)
-  //   } catch (error) {
-  //     console.error("Error fetching trainers:", error)
-  //   }
-  // }
 
   const handleRemoveTrainer = async (trainerId: string) => {
-    try {
-      await axios.put(`/api/admin/remove-trainer/${trainerId}`)
-      refetch()
-    } catch (error) {
-      console.error("Error removing trainer:", error)
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axiosSecured.put(`/api/admin/remove-trainer/${trainerId}`)
+          refetch()
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        } catch (error) {
+          Swal.fire({
+            title: "Failed",
+            text: error?.response?.data?.message,
+            icon: "error"
+          });
+          console.error("Error removing trainer:", error)
+        }
+      }
+    });
+    
   }
 
   return (

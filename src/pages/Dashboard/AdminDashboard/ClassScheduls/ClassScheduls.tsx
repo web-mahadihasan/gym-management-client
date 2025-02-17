@@ -45,7 +45,7 @@ export default function ClassSchedules() {
   const {data: schedules, refetch} = useQuery({
     queryKey: ["schedules"],
     queryFn: async () => {
-        const {data} = await axiosSecured.get(`/api/admin//all-schedules`)
+        const {data} = await axiosSecured.get(`/api/admin/all-schedules`)
         return data.data
     }
   })
@@ -97,7 +97,7 @@ export default function ClassSchedules() {
       console.error("Error creating schedule:", error)
     }
   }
-
+  if(isLoading) return <p>loading...</p>
   return (
     <div className="my-10">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
@@ -171,7 +171,7 @@ export default function ClassSchedules() {
                         <SelectContent>
                         {allTrainer?.map((trainer) => (
                             <SelectItem key={trainer._id} value={trainer._id}>
-                            {trainer.name}
+                            {trainer?.name}
                             </SelectItem>
                         ))}
                         </SelectContent>
@@ -199,12 +199,13 @@ export default function ClassSchedules() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                   className="bg-white p-4 rounded-lg shadow space-y-2 border border-gray-200"
-                >
+                >   
+                 <h3 className="font-bold text-xl"> <span className="font-bold">Class Title: </span>{schedule?.title}</h3>
                   <p className="font-semibold">Date: {format(new Date(schedule?.date), "MMMM d, yyyy")}</p>
                   <p>
                     <span className="font-bold">Time:</span> {schedule.startTime} - {schedule.endTime}
                   </p>
-                  <p><span className="font-bold">Trainer:</span> {schedule.trainer.name}</p>
+                  {/* <p><span className="font-bold">Trainer:</span> {schedule.trainer}</p> */}
                   <p>
                     <span className="font-bold">Bookings:</span> {schedule.currentBookings}/{schedule.maxCapacity}
                   </p>

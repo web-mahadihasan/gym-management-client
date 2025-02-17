@@ -16,7 +16,7 @@ const DashboardSidebar = ({setOpenSidebar, openSidebar}) => {
     ]
     const traineeRoutes = [
         {name: "Book Class", path: "/dashboard/user/book-class",  icon: <Icon icon="hugeicons:activity-04" width="26" height="26" />},
-        {name: "Manage Profile", path: "/dashboard/user/profile",  icon: <Icon icon="simple-line-icons:badge" width="26" height="26" />},
+        {name: "Manage Profile", path: "/dashboard/user/manage-profile",  icon: <Icon icon="simple-line-icons:badge" width="26" height="26" />},
         {name: "My Booking", path: "/dashboard/user/my-booking",  icon: <Icon icon="mdi:user-check-outline" width="26" height="26" />},
     ]
 

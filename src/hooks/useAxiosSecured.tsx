@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 const token = localStorage.getItem("token");
 
 export const axiosSecured = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://gym-management-server-bd.vercel.app',
     headers: {
         Authorization: `Bearer ${token}`
     }

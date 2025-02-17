@@ -43,6 +43,11 @@ const CreateNewTrainer: React.FC = () => {
         });
         refetch()
     } catch (error) {
+      Swal.fire({
+        title: "Failed",
+        text: error?.response?.data?.message,
+        icon: "error"
+      });
       console.error("Error creating trainer:", error)
     }
   }

@@ -21,7 +21,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const token = localStorage.getItem("token")
@@ -84,7 +84,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(null)
   }
   const authInfo = {
-    user, login, logout, register, setUser, loading, setLoading
+    user, login, logout, register, setUser, loading, setLoading, fetchUser
   }
   return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
 }

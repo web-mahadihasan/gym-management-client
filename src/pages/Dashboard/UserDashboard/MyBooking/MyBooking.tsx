@@ -9,10 +9,11 @@ export default function MyBookings() {
   const axiosSecured = useAxiosSecured()
 
   const {data: mybookings, refetch, isLoading} = useQuery({
-    queryKey: ["mybooking"],
+    queryKey: ["mybookings"],
     queryFn: async () => {
-        const {data} = await axiosSecured.get("api/trainee/my-booking/67b2cd2b2975d70cc9561ded")
+        const {data} = await axiosSecured.get(`api/trainee/my-booking/${user._id}`)
         return data.myBookings
+        console.log(data.myBookings)
     }
   })
 

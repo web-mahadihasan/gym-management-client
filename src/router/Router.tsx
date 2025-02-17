@@ -11,6 +11,7 @@ import ClassSchedules from "@/pages/Dashboard/AdminDashboard/ClassScheduls/Class
 import ManageUsers from "@/pages/Dashboard/AdminDashboard/CreateNewTrainer/CreateNewTrainer";
 import CreateNewTrainer from "@/pages/Dashboard/AdminDashboard/CreateNewTrainer/CreateNewTrainer";
 import ManageTrainers from "@/pages/Dashboard/AdminDashboard/ManageTrainer/ManageTrainer";
+import ManageProfile from "@/pages/Dashboard/UserDashboard/ManageProfile/ManageProfile";
 
 const Router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ const Router = createBrowserRouter([
             {
                 path: "/dashboard/user/book-class",
                 element: <BookClasses />
+            },
+            {
+                path: "/dashboard/user/manage-profile",
+                element: <ManageProfile />
             }
         ]
     }
