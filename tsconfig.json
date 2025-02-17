@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",  // or "NodeNext" if using Node.js
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
