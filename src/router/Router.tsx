@@ -3,10 +3,14 @@ import AuthLayout from "../layouts/AuthLayout";
 import LoginPage from "../pages/auth/LoginPage";
 import RegistrationPage from "../pages/auth/RegistrationPage";
 import DashboardLayout from "@/layouts/Dashboard";
-import CreateTrainer from "@/pages/Dashboard/AdminDashboard/CreateTrainer/CreateTrainer";
 import MyBookings from "@/pages/Dashboard/UserDashboard/MyBooking/MyBooking";
 import BookClasses from "@/pages/Dashboard/UserDashboard/BookClasses/BookClasses";
 import TrainerDashboard from "@/pages/Dashboard/TrainerDashboard/AssignClass";
+import PrivateRoute from "./PrivateRoute";
+import ClassSchedules from "@/pages/Dashboard/AdminDashboard/ClassScheduls/ClassScheduls";
+import ManageUsers from "@/pages/Dashboard/AdminDashboard/CreateNewTrainer/CreateNewTrainer";
+import CreateNewTrainer from "@/pages/Dashboard/AdminDashboard/CreateNewTrainer/CreateNewTrainer";
+import ManageTrainers from "@/pages/Dashboard/AdminDashboard/ManageTrainer/ManageTrainer";
 
 const Router = createBrowserRouter([
     {
@@ -29,11 +33,19 @@ const Router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout/>,
+        element: <PrivateRoute ><DashboardLayout/></PrivateRoute>,
         children: [
             {
                 path: "/dashboard/admin/create-trainer",
-                element: <CreateTrainer/>
+                element: <CreateNewTrainer />
+            },
+            {
+                path: "/dashboard/admin/class-scheduls",
+                element: <ClassSchedules />
+            },
+            {
+                path: "/dashboard/admin/manage-trainer",
+                element: <ManageTrainers />
             },
             {
                 path: "/dashboard/trainer/assign-class",

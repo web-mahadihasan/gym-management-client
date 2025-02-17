@@ -7,20 +7,22 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { FaUser, FaEnvelope, FaLock, FaUserTie } from "react-icons/fa"
 import { Link, useNavigate } from "react-router"
+import toast from "react-hot-toast"
 
 const RegistrationPage: React.FC = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [role, setRole] = useState("trainee")
   const [error, setError] = useState("")
   const navigate = useNavigate()
   const { register } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const role = "trainee"
     try {
       await register(name, email, password, role)
+      toast.success("Registration Success! please login")
       navigate("/auth/login")
     } catch (err) {
       setError("Registration failed. Please try again.")
@@ -101,7 +103,7 @@ const RegistrationPage: React.FC = () => {
                 />
               </div>
             </div>
-            <div>
+            {/* <div>
               <label htmlFor="role" className="sr-only">
                 Role
               </label>
@@ -120,7 +122,7 @@ const RegistrationPage: React.FC = () => {
                   </SelectContent>
                 </Select>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {error && (

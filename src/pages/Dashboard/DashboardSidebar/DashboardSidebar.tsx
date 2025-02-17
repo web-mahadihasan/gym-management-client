@@ -8,20 +8,16 @@ const DashboardSidebar = ({setOpenSidebar, openSidebar}) => {
 
     const addminRoutes = [
         {name: "Create Trainer", path: "/dashboard/admin/create-trainer",  icon: <Icon icon="clarity:users-line" width="26" height="26" />},
-        {name: "Manage Trainer", path: "/dashboard/admin/applied-trainer",  icon: <Icon icon="humbleicons:user-add" width="26" height="26" />},
-        {name: "Schedule Class", path: "/dashboard/admin/all-newsletter",  icon: <Icon icon="ri:record-mail-line" width="26" height="26" />},
-        // {name: "Balance", path: "/dashboard/admin/balance",  icon: <Icon icon="grommet-icons:money" width="24" height="24" />},
-        // {name: "Add New Class",path: "/dashboard/admin/add-news-class",  icon: <PiListStarFill size={24} />},
+        {name: "Manage Trainer", path: "/dashboard/admin/manage-trainer",  icon: <Icon icon="humbleicons:user-add" width="26" height="26" />},
+        {name: "Schedule Class", path: "/dashboard/admin/class-scheduls",  icon: <Icon icon="ri:record-mail-line" width="26" height="26" />},
     ]
     const trainerRoutes = [
         {name: "Assign Class", path: "/dashboard/trainer/assign-class",  icon: <Icon icon="mingcute:classify-2-line" width="26" height="26" />},
-        // {name: "Add New Slot", path: "/dashboard/trainer/add-new-slot",  icon: <Icon icon="mingcute:classify-add-2-line" width="26" height="26" />},
     ]
     const traineeRoutes = [
         {name: "Book Class", path: "/dashboard/user/book-class",  icon: <Icon icon="hugeicons:activity-04" width="26" height="26" />},
         {name: "Manage Profile", path: "/dashboard/user/profile",  icon: <Icon icon="simple-line-icons:badge" width="26" height="26" />},
         {name: "My Booking", path: "/dashboard/user/my-booking",  icon: <Icon icon="mdi:user-check-outline" width="26" height="26" />},
-        // {name: "Payment History", path: "/dashboard/user/payment-history",  icon: <Icon icon="iconamoon:history-light" width="26" height="26" />},
     ]
 
     return (
@@ -43,7 +39,7 @@ const DashboardSidebar = ({setOpenSidebar, openSidebar}) => {
                        user && user?.role === "admin" && addminRoutes.map(link =>   
                             <li className="rounded-sm dashboard text-base hover:bg-gray-200" key={link.name}>
                                 <NavLink to={link.path} rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md dark:text-gray-300">
-                                    <span className='text-gray-700 font-inter'>{link.icon}</span>
+                                    <span className='text-purple-500 font-inter'>{link.icon}</span>
                                     <span>{link.name}</span>
                                 </NavLink>
                             </li>

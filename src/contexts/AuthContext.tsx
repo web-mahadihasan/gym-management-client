@@ -14,12 +14,14 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>
   logout: () => void
   register: (name: string, email: string, password: string, role: string) => Promise<void>
+  loading: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const token = localStorage.getItem("token")
@@ -34,6 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/user/check-auth`)
       setUser(response.data)
+      setLoading(false)
       // console.log(response.data)
     } catch (error) {
       console.error("Error fetching user:", error)
@@ -62,13 +65,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         name,
         email,
         password,
-        role,
+        role
       })
       const { token } = response.data
       // console.log(token)
       localStorage.setItem("token", token)
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
-      // await fetchUser()
+      setLoading(true)
     } catch (error) {
       console.error("Registration error:", error)
       throw error
@@ -81,7 +84,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(null)
   }
   const authInfo = {
-    user, login, logout, register, setUser
+    user, login, logout, register, setUser, loading, setLoading
   }
   return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
 }

@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault()
     try {
       await login(email, password)
-      // navigate("/auth/login")
+      navigate("/dashboard")
       toast.success("Login Success")
     } catch (err) {
       setError("Invalid email or password")

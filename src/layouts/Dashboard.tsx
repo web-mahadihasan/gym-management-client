@@ -2,11 +2,19 @@ import * as React from "react";
 import { Outlet } from "react-router";
 import { HiMenu } from "react-icons/hi";
 import DashboardSidebar from "@/pages/Dashboard/DashboardSidebar/DashboardSidebar";
+import { useAuth } from "@/contexts/AuthContext";
+import {Button} from "@/components/ui/button"
+import toast from "react-hot-toast";
+
 
 const DashboardLayout: React.FC = () => {
   const [openSidebar, setOpenSidebar] = React.useState<boolean>(false);
+    const {user, logout} = useAuth()
 
-
+    const handleLogOut = async () => {
+       await logout()
+       toast.success("Successfully logout") 
+    }
   return (
     <div className="w-full font-inter">
       <div className="lg:flex min-h-screen relative">
@@ -31,6 +39,11 @@ const DashboardLayout: React.FC = () => {
                   <HiMenu size={26} />
                 </button>
                 <h3 className="text-2xl font-lexend font-bold px-4">Gym Management System</h3>
+              </div>
+              <div>
+                {
+                    user && <Button onClick={handleLogOut}>Logout</Button>
+                }
               </div>
             </nav>
           </div>
