@@ -88,7 +88,7 @@ erDiagram
     BOOKINGS }o--|| CLASSES : "belongs_to"
     CLASSES }o--|| TRAINERS : "conducted_by"
 
-
+```
 ## 📥 Installation
 
 ### 1️⃣ Clone the Repository
