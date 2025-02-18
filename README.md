@@ -61,7 +61,7 @@ erDiagram
         string name
         string email
         string password
-        string role  // Admin, Trainer, Trainee
+        string role "Admin | Trainer | Trainee"
     }
     
     TRAINERS {
@@ -84,8 +84,6 @@ erDiagram
         int class_id FK
     }
 
-    USERS ||--|{ BOOKINGS : makes
-    BOOKINGS }|--|| CLASSES : belongs_to
-    CLASSES }|--|| TRAINERS : conducted_by
-
-
+    USERS ||--o{ BOOKINGS : "makes"
+    BOOKINGS }o--|| CLASSES : "belongs_to"
+    CLASSES }o--|| TRAINERS : "conducted_by"
